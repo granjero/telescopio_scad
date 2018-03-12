@@ -16,7 +16,7 @@ DiametroEspejoPrimario = 120; // Diámetro del espejo Primario se obtiene midien
 ValorA = 100; // Valor "A" no tiene real importancia A = 100 / 150 
 ValorB = 100; // Valor "B" Desde el punto de fijación de la araña hasta el centro del espejo secundario con el tornillo central de la araña al %50
 ValorC = 50; // Valor "C" Desde el punto de fijación de la celda hasta el borde del espejo primario
-ValorD = 40; // Valor "D" para que los tornillos de la celda no sobresalgan del tubo.
+ValorD = 60; // Valor "D" para que los tornillos de la celda no sobresalgan del tubo.
 ValorE = 90; // Valor "E" es la distancia entre la base del enfocador hasta la parte superior de su tubo porta ocular cuando este se encuentra a la mitad de su recorrido de enfoque. 
 // Medidas del Tubo
 PerimetroExteriorDelTubo = 658; // Perímetro exterior del tubo
@@ -219,7 +219,7 @@ module textos(tamFuente)
 
 // Render Comentar o descomentar las funciones para ver piezas
 
-tubo(Rt, Lt, Et);
+tubo();
 portaOcular();
 conoDeLuz(F, ReP);
 conoDeLuzSecundario(F, RbS);
