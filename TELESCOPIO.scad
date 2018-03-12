@@ -19,14 +19,22 @@ ValorC = 50; // Valor "C" Desde el punto de fijación de la celda hasta el borde
 ValorD = 40; // Valor "D" para que los tornillos de la celda no sobresalgan del tubo.
 ValorE = 90; // Valor "E" es la distancia entre la base del enfocador hasta la parte superior de su tubo porta ocular cuando este se encuentra a la mitad de su recorrido de enfoque. 
 // Medidas del Tubo
-PerimetroExteriorDelTubo = 420; // Perímetro exterior del tubo
-EspesorDeLaParedDelTubo = 3;
+PerimetroExteriorDelTubo = 658; // Perímetro exterior del tubo
+EspesorDeLaParedDelTubo = 1;
 // Medidas de PortaOcular
-LargoDelPortaOcular = 120; 
+LargoDelPortaOcular = 80; 
 RadioDelPortaOcular = 33;
-EspesorDeLaParedDelPO = 10;
+EspesorDeLaParedDelPO = 1; // Espesor de la pared del Tubo es la medida del ancho del material del tubo
 
-// Espesor de la pared del Tubo es la medida del ancho del material del tubo
+
+/**********************************************/
+/* NO MODIFICAR NADA DEBAJO DE ESTE COMENTARIO*/
+/* NO MODIFICAR NADA DEBAJO DE ESTE COMENTARIO*/
+/* NO MODIFICAR NADA DEBAJO DE ESTE COMENTARIO*/
+/* NO MODIFICAR NADA DEBAJO DE ESTE COMENTARIO*/
+/* NO MODIFICAR NADA DEBAJO DE ESTE COMENTARIO*/
+/* NO MODIFICAR NADA DEBAJO DE ESTE COMENTARIO*/
+/**********************************************/
 
 /************************/
 /* Datos de los ESPEJOS */
@@ -38,7 +46,6 @@ DeP = DiametroEspejoPrimario;
 ReP = DeP / 2;  // Radio Espejo Primario "ReP"
 
 // SECUNDARIO
-
 
 /******************/
 /* Datos del TUBO */
@@ -184,32 +191,40 @@ module portaOcular()
         }
 }
 
-
-module Textos()
+module textos(tamFuente)
 {
-    translate([0, Dt*2, Lt * S])
-    text("Hola");
-}
+    oraciones=["TELESCOPIO"
+        ,str("Distancia Focal F = ", F , "mm")
+        ,str("Distancia S = ", S , "mm")
+        ,str("Distancia S + D Desde las fijaciones de la celda al centro del Porta Ocular = ", S+D , "mm")
+        ,str("Distancia D de la base del Tubo a las fijaciones de la celda = ", D , "mm" )
+        ,str("Distancia C de las fijaciones de la Celda al Borde del Espejo Primario = ", C , "mm" )
+        ,str("Distancia B de la fijación de la araña al centro del Espejo Secundario = ", B , "mm" )
+        ,str("Distancia A es arbitraria entre 100 y 150 = ", A , "mm" )
+    ];
+    for(a = [0:len(oraciones)-1])
+    {
+        translate([0, Dt, Lt - (tamFuente*1.5)*a])
+        rotate([90,0,90]){
+        color("black"){
+            text(str(oraciones[a]), tamFuente);
+        }    
+    }
+        
+        }
+    
+ }
+
+
 
 // Render Comentar o descomentar las funciones para ver piezas
 
-//tubo(Rt, Lt, Et);
-//portaOcular();
-//conoDeLuz(F, ReP);
-//conoDeLuzSecundario(F, RbS);
-Textos();
+tubo(Rt, Lt, Et);
+portaOcular();
+conoDeLuz(F, ReP);
+conoDeLuzSecundario(F, RbS);
+textos(10);
 
-echo(
-str(
-"
-<h2>Distancia <font color='green'>D</font> entre la base del tubo y las fijaciones de la celda = ",D,"mm</h2> 
-<h2>Distancia <font color='green'>C</font> entre las fijaciones de la celda y la superficie del Espejo Primario = ",C,"mm</h2>
-<h2>Distancia <font color='green'>entre las fijaciones de la celda y las fijaciones de la araña</font> = ",C+S+B,"mm</h2>
-<h2>Distancia <font color='green'>entre las fijaciones de la celda y el centro del porta ocular</font> = ",S+C,"mm</h2>
-<h2>Distancia <font color='green'>S</font> entre los espejos= ",S,"mm</h2>
 
-"
-)
-);
 
 
